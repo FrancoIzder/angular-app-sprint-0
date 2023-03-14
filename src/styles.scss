@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@400;700&display=swap");
+
+$color-primary: #3e3e3e;
+$color-secondary: #717171;
+$color-font-primary: #ffffff;
+$default-font-family: "Exo";
+
+* {
+  font-family: $default-font-family;
+}
+
+body {
+  margin: 0;
+}
