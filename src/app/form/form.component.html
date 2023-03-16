@@ -3,72 +3,41 @@
     <mat-icon class="arrow-icon">arrow_back</mat-icon>
     <h1 class="title mb-40">Registro de Usuario</h1>
 
-    <mat-form-field class="mb-20" color="accent" appearance="outline">
-      <mat-label>Nombre(s)</mat-label>
-      <input type="text" matInput [formControl]="inputsValidators.name" />
-      <mat-error
-        *ngIf="
-          inputsValidators.name.hasError('pattern') &&
-          !inputsValidators.name.hasError('required')
-        "
-      >
-        Por Favor Solo Introduzca <strong>Letras</strong>
-      </mat-error>
-      <mat-error *ngIf="inputsValidators.name.hasError('required')">
-        El Nombre es <strong>Requerido</strong>
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="mb-20" color="accent" appearance="outline">
-      <mat-label>Apellido Paterno</mat-label>
-      <input type="text" matInput [formControl]="inputsValidators.lastname1" />
-      <mat-error
-        *ngIf="
-          inputsValidators.lastname1.hasError('pattern') &&
-          !inputsValidators.lastname1.hasError('required')
-        "
-      >
-        Por Favor Solo Introduzca <strong>Letras</strong>
-      </mat-error>
-      <mat-error *ngIf="inputsValidators.lastname1.hasError('required')">
-        El Apellido Paterno es <strong>Requerido</strong>
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="mb-20" color="accent" appearance="outline">
-      <mat-label>Apellido Materno</mat-label>
-      <input type="text" matInput [formControl]="inputsValidators.lastname2" />
-      <mat-error
-        *ngIf="
-          inputsValidators.lastname2.hasError('pattern') &&
-          !inputsValidators.lastname2.hasError('required')
-        "
-      >
-        Por Favor Solo Introduzca <strong>Letras</strong>
-      </mat-error>
-      <mat-error *ngIf="inputsValidators.lastname2.hasError('required')">
-        El Apellido Materno es <strong>Requerido</strong>
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="mb-20" color="accent" appearance="outline">
-      <mat-label>Correo</mat-label>
+    <mat-form-field
+      class="mb-20"
+      color="accent"
+      appearance="outline"
+      *ngFor="let input of inputsValidators; index as i"
+    >
+      <mat-label>{{ inputsValidators[i].label }}</mat-label>
       <input
-        type="email"
+        type="text"
         matInput
-        [formControl]="inputsValidators.email"
-        placeholder="Ex. pat@example.com"
+        [formControl]="inputsValidators[i].validator"
+        [placeholder]="i === 3 ? 'Ex. pat@example.com' : ''"
       />
+
       <mat-error
         *ngIf="
-          inputsValidators.email.hasError('email') &&
-          !inputsValidators.email.hasError('required')
+          i !== 3 &&
+          inputsValidators[i].validator.hasError('pattern') &&
+          !inputsValidators[i].validator.hasError('required')
         "
       >
-        Por Favor Ingrese un Correo Válido
+        Por Favor Solo Introduzca <strong>Letras</strong>
       </mat-error>
-      <mat-error *ngIf="inputsValidators.email.hasError('required')">
-        El Correo es <strong>Requerido</strong>
+
+      <mat-error
+        *ngIf="
+          i === 3 &&
+          inputsValidators[i].validator.hasError('email') &&
+          !inputsValidators[i].validator.hasError('required')
+        "
+      >
+        Por Favor Introduzca un Correo <strong>Válido</strong>
+      </mat-error>
+      <mat-error *ngIf="inputsValidators[i].validator.hasError('required')">
+        {{ inputsValidators[i].label }} es <strong>Requerido</strong>
       </mat-error>
     </mat-form-field>
 

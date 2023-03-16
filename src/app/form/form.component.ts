@@ -11,16 +11,31 @@ export class FormComponent {
 
   patternValidator = Validators.pattern(/^[a-zA-Z\s]*$/);
 
-  inputsValidators = {
-    name: new FormControl('', [this.patternValidator, Validators.required]),
-    lastname1: new FormControl('', [
-      this.patternValidator,
-      Validators.required,
-    ]),
-    lastname2: new FormControl('', [
-      this.patternValidator,
-      Validators.required,
-    ]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-  };
+  inputsValidators = [
+    {
+      label: 'Nombre(s)',
+      validator: new FormControl('', [
+        this.patternValidator,
+        Validators.required,
+      ]),
+    },
+    {
+      label: 'Apellido Paterno',
+      validator: new FormControl('', [
+        this.patternValidator,
+        Validators.required,
+      ]),
+    },
+    {
+      label: 'Apellido Materno',
+      validator: new FormControl('', [
+        this.patternValidator,
+        Validators.required,
+      ]),
+    },
+    {
+      label: 'Correo',
+      validator: new FormControl('', [Validators.required, Validators.email]),
+    },
+  ];
 }
