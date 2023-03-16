@@ -1,0 +1,54 @@
+@import "../../styles.scss";
+
+.form-container {
+  width: calc(100vw - 80px);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-secondary;
+}
+
+.form-box {
+  width: 30%;
+  min-height: 60%;
+  background-color: $color-primary;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+.title {
+  color: $color-font-primary;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 30px;
+}
+
+.arrow-icon {
+  color: $white;
+  position: absolute;
+  top: 40px;
+  cursor: pointer;
+}
+
+.save-button {
+  width: 150px;
+  margin-left: auto;
+}
+
+input {
+  color: $white;
+}

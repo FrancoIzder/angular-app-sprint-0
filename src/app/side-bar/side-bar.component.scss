@@ -1,0 +1,85 @@
+@import "../../styles.scss";
+
+.sidebar {
+  height: 100vh;
+  position: fixed;
+  width: 80px;
+  background-color: $color-primary;
+  transition: width 200ms ease;
+}
+
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-item:last-child {
+  position: absolute;
+  left: auto;
+  bottom: 0;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  color: $white;
+  text-decoration: none;
+  filter: opacity(0.7);
+  transition: 600ms;
+}
+
+.nav-link:hover {
+  filter: opacity(1);
+  background: $almost-white;
+  color: $violet;
+}
+
+.default-back:hover {
+  background-color: transparent;
+}
+
+.link-text {
+  display: none;
+  margin-left: 16px;
+}
+
+.icon {
+  min-width: 32px;
+  margin: 0 24px;
+}
+
+.sidebar:hover {
+  width: 256px;
+}
+
+.sidebar:hover .link-text {
+  display: block;
+}
+
+.arrow-container {
+  transition: transform 200ms;
+}
+
+.arrow {
+  transform: rotate(0deg);
+  transition: transform 500ms;
+}
+
+.sidebar:hover .arrow {
+  transform: rotate(-180deg);
+  transition: transform 500ms;
+}
+
+.sidebar:hover .arrow-container {
+  transform: translateX(176px);
+  transition: transform 200ms;
+}

@@ -1,11 +1,15 @@
 @import "../../styles.scss";
 
-.home-container {
-  width: 100vw;
+.home {
+  width: calc(100vw - 80px);
   height: 100vh;
   background-color: $color-primary;
   color: $color-font-primary;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 60px;
+  background-image: url("./homeBackground.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }

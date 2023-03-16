@@ -5,11 +5,26 @@ $color-primary: #3e3e3e;
 $color-secondary: #717171;
 $color-font-primary: #ffffff;
 $default-font-family: "Exo";
+$white: #ffffff;
+$almost-white: #d5d5d5;
+$violet: #6600ff;
 
 * {
   font-family: $default-font-family;
 }
 
+mat-icon {
+  font-family: "Material Icons";
+}
+
+body {
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
 body {
   margin: 0;
 }
