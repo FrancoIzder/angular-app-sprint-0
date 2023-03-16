@@ -18,6 +18,7 @@
         matInput
         [formControl]="inputsValidators[i].validator"
         [placeholder]="i === 3 ? 'Ex. pat@example.com' : ''"
+        (input)="setData(inputsValidators[i].validator.status, i, $event)"
       />
 
       <mat-error
