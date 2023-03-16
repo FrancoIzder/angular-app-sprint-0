@@ -1,6 +1,9 @@
 <div class="form-container">
   <form class="form-box">
-    <mat-icon class="arrow-icon">arrow_back</mat-icon>
+    <a href="/users" class="back-arrow">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+
     <h1 class="title mb-40">Registro de Usuario</h1>
 
     <mat-form-field
@@ -46,6 +49,7 @@
       color="primary"
       class="save-button"
       disabled="{{ isDisabled }}"
+      (click)="submitUser()"
     >
       Guardar
     </button>

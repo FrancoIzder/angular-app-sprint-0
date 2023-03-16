@@ -38,4 +38,8 @@ export class FormComponent {
       validator: new FormControl('', [Validators.required, Validators.email]),
     },
   ];
+
+  submitUser = () => {
+    console.log('submitted!');
+  };
 }
