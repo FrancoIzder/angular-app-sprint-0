@@ -21,8 +21,6 @@ export interface UserData {
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements AfterViewInit {
-  usersData: UserData[] = [];
-
   columns = [
     {
       columnDef: 'idUsuario',
@@ -53,7 +51,7 @@ export class UsersComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private http: HttpClient) {
-    this.dataSource = new MatTableDataSource(this.usersData);
+    this.dataSource = new MatTableDataSource();
   }
 
   ngOnInit() {
@@ -68,7 +66,7 @@ export class UsersComponent implements AfterViewInit {
             data
           )
           .subscribe((decryptData: any) => {
-            next: this.dataSource =
+            next: this.dataSource.data =
               decryptData.body.data.items[0].usuariosLista;
             error: (error: Error) => {
               console.error('There was an error!', error);
