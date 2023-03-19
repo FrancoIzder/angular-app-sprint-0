@@ -37,3 +37,18 @@
   width: 60vw;
   height: 80vh;
 }
+
+.mat-cel {
+  color: $white;
+}
+
+.table-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-user-button {
+  color: $white;
+  background-color: $violet;
+}

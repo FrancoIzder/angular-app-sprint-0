@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 export interface UserData {
   correo: string;
@@ -13,6 +14,7 @@ export interface UserData {
   id_origen: number;
   nombre: string;
   origen: string;
+  actions: any;
 }
 
 @Component({
@@ -38,9 +40,9 @@ export class UsersComponent implements AfterViewInit {
       cell: (element: any) => `${element.correo}`,
     },
     {
-      columnDef: 'symbol',
+      columnDef: 'actions',
       header: 'Acciones',
-      cell: (element: any) => `${element.symbol}`,
+      cell: (element: any) => `${element.actions}`,
     },
   ];
 
@@ -48,9 +50,8 @@ export class UsersComponent implements AfterViewInit {
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -80,7 +81,6 @@ export class UsersComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -91,4 +91,16 @@ export class UsersComponent implements AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  editUser = (id: number) => {
+    console.log(id);
+  };
+
+  deleteUser = (id: number) => {
+    console.log(id);
+  };
+
+  addUserButton = () => {
+    this.router.navigate(['/form']);
+  };
 }
