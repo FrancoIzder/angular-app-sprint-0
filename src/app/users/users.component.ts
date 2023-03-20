@@ -13,8 +13,8 @@ export interface UserData {
   idUsuario: number;
   id_origen: number;
   nombre: string;
-  origen: string;
-  actions: any;
+  origen: number;
+  actions: Element;
 }
 
 @Component({
@@ -27,22 +27,22 @@ export class UsersComponent implements AfterViewInit {
     {
       columnDef: 'idUsuario',
       header: 'ID',
-      cell: (element: any) => `${element.idUsuario}`,
+      cell: (element: UserData) => `${element.idUsuario}`,
     },
     {
       columnDef: 'nombre',
       header: 'Nombre',
-      cell: (element: any) => `${element.nombre}`,
+      cell: (element: UserData) => `${element.nombre}`,
     },
     {
       columnDef: 'correo',
       header: 'Correo',
-      cell: (element: any) => `${element.correo}`,
+      cell: (element: UserData) => `${element.correo}`,
     },
     {
       columnDef: 'actions',
       header: 'Acciones',
-      cell: (element: any) => `${element.actions}`,
+      cell: (element: UserData) => `${element.actions}`,
     },
   ];
 

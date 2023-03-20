@@ -5,6 +5,9 @@ import {
   Validators,
   ValidationErrors,
 } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { UserData } from '../users/users.component';
 
 @Component({
   selector: 'app-form',
@@ -15,12 +18,15 @@ export class FormComponent {
   isDisabled: boolean = true;
   patternValidator = Validators.pattern(/^[a-zA-Z\s]*$/);
 
+  constructor(private http: HttpClient, private router: Router) {}
+
   data = {
     correo_electronico: '',
     apellidoPaterno: '',
     apellidoMaterno: '',
     nombre: '',
     origen: 3,
+    rfc: 'ROLA900320N55',
   };
 
   inputsValidators = [
@@ -82,7 +88,27 @@ export class FormComponent {
     }
   };
 
-  submitUser = () => {
-    console.log(this.data);
+  encryptData = () => {
+    return this.http
+      .post(
+        'https://ja4j8mqyia.execute-api.us-east-1.amazonaws.com/dev/security/encrypt',
+        { data: this.data }
+      )
+      .toPromise();
+  };
+
+  registerUser = (encryptedData: any) => {
+    return this.http
+      .post(
+        'https://d4qo4rsz5l.execute-api.us-east-1.amazonaws.com/dev/user/register',
+        { data: encryptedData.body.data }
+      )
+      .toPromise();
+  };
+
+  submitUser = async () => {
+    const data = await this.encryptData();
+    await this.registerUser(data);
+    //this.router.navigate(['/users']);
   };
 }
