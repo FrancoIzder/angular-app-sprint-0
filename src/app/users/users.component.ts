@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { UserServices } from 'src/services/users.service';
+import { lastValueFrom } from 'rxjs';
 
 export interface UserData {
   correo: string;
@@ -55,8 +56,10 @@ export class UsersComponent implements AfterViewInit {
   }
 
   getTableData = async () => {
-    const list = await this.userServices.getList();
-    const decryptedData: any = await this.userServices.decryptData(list);
+    const list = await lastValueFrom(this.userServices.getList());
+    const decryptedData: any = await lastValueFrom(
+      this.userServices.decryptData(list)
+    );
     this.dataSource.data = decryptedData.body.data.items[0].usuariosLista;
   };
 
