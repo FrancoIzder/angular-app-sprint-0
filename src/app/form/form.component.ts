@@ -17,13 +17,15 @@ export class FormComponent {
 
   rfcNumber = -1;
 
+  rfcNumberAfterN = Math.random() * (99 - 10) + 10;
+
   data = {
     correo_electronico: '',
     apellidoPaterno: '',
     apellidoMaterno: '',
     nombre: '',
     origen: 3,
-    rfc: `ROLA900320N${this.rfcNumber}`,
+    rfc: `ROLA900${this.rfcNumber}0N${this.rfcNumberAfterN}`,
   };
 
   inputsValidators = [
