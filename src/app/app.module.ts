@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
+import { UserServices } from 'src/services/users.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatPaginatorModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [UserServices],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

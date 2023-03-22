@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { UserServices } from 'src/services/users.service';
 
 export interface UserData {
   correo: string;
@@ -51,32 +52,18 @@ export class UsersComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private userServices: UserServices, private router: Router) {
     this.dataSource = new MatTableDataSource();
   }
 
+  getTableData = async () => {
+    const list = await this.userServices.getList();
+    const decryptedData: any = await this.userServices.decryptData(list);
+    this.dataSource.data = decryptedData.body.data.items[0].usuariosLista;
+  };
+
   ngOnInit() {
-    this.http
-      .get<string>(
-        'https://ja4j8mqyia.execute-api.us-east-1.amazonaws.com/dev/users/listUser '
-      )
-      .subscribe((data) => {
-        next: this.http
-          .post(
-            ' https://ja4j8mqyia.execute-api.us-east-1.amazonaws.com/dev/security/decrypt',
-            data
-          )
-          .subscribe((decryptData: any) => {
-            next: this.dataSource.data =
-              decryptData.body.data.items[0].usuariosLista;
-            error: (error: Error) => {
-              console.error('There was an error!', error);
-            };
-          });
-        error: (error: Error) => {
-          console.error('There was an error!', error);
-        };
-      });
+    this.getTableData();
   }
 
   ngAfterViewInit() {
