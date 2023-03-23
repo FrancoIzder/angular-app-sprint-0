@@ -11,7 +11,7 @@ import { lastValueFrom } from 'rxjs';
 })
 export class FormComponent {
   isDisabled: boolean = true;
-  patternValidator = Validators.pattern(/^[a-zA-Z\s]*$/);
+  patternValidator = Validators.pattern(/^[a-zA-ZÀ-ÿ\ñ\Ñ\s]+$/);
 
   constructor(private userServices: UserServices, private router: Router) {}
 
@@ -58,7 +58,9 @@ export class FormComponent {
 
   setData = (statusType: string, i: number, data: any) => {
     const isValid = statusType === 'VALID' ? true : false;
-    const value = isValid ? data.target.value : '';
+    let value = isValid ? data.target.value : '';
+    if (data.target.value.charAt(0) === ' ') data.target.value = '';
+
     switch (i) {
       case 0:
         this.data.nombre = value;
